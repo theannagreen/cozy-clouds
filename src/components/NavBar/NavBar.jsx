@@ -9,6 +9,8 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
+      <Link to="/dashboard">Dashboard</Link>
+      &nbsp; | &nbsp;
       <Link to="/weather">Weather</Link>
       &nbsp; | &nbsp;
       <Link to="/weekly">Weekly</Link>
