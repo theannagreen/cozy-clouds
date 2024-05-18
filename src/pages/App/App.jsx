@@ -8,9 +8,13 @@ import NavBar from '../../components/NavBar/NavBar';
 import WeatherPage from '../WeatherPage/WeatherPage';
 import WeeklyPage from '../WeeklyPage/WeeklyPage';
 import './App.css';
+// import * as userService from '../../utilities/users-service';
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  // testing savelocation
+  // window.saveLocation = userService.saveLocation;
 
   return (
     <main className="App">

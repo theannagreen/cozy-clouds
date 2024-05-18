@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { saveLocation } from '../../utilities/users-service'
 
 export default function WeatherPage() {
     const [city, setCity] = useState('');
@@ -17,6 +18,15 @@ export default function WeatherPage() {
         }
     };
 
+    const handleSaveLocation = async () => {
+        try {
+            await saveLocation(city);
+            alert('Location saved');
+        } catch (err) {
+            alert('Error saving');
+        }
+    }
+
     return (
         <div>
             <h2>Search Weather by Location</h2>
@@ -33,6 +43,7 @@ export default function WeatherPage() {
                     <h3>Weather in {weather.name}</h3>
                     <p>Temperature: {weather.main.temp}°F</p>
                     <p>Condition: {weather.weather[0].description}</p>
+                    <button onClick={handleSaveLocation}>Save Location</button>
                 </div>
             )}
         </div>
