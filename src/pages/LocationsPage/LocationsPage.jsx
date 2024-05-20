@@ -19,12 +19,13 @@ export default function LocationsPage() {
 
     const handleDeleteLocation = async (location) => {
         try {
-          const updatedLocations = await deleteLocation(location);
-          setLocations(updatedLocations);
+            await deleteLocation(location);
+            setLocations(locations.filter(loc => loc !== location)); // Update state after deletion
         } catch (err) {
-          console.error('Error deleting location', err);
+            console.error('Error deleting location', err);
         }
-      };
+    };
+    
 
     return (
         <div>
