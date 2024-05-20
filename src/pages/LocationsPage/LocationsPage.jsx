@@ -30,6 +30,9 @@ export default function LocationsPage() {
     return (
         <div>
             <h2>Saved Locations</h2>
+            {locations.length === 0 ? (
+                <p>There are no saved locations.</p>
+            ) : (
             <ul>
                 {locations.map((location, index) => (
                     <li key={index}>
@@ -38,6 +41,7 @@ export default function LocationsPage() {
                         </li>
                 ))}
             </ul>
+            )}
         </div>
     );
 }
