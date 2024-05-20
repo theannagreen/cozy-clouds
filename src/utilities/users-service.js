@@ -1,37 +1,29 @@
-// Service modules export business/app logic
-// such as managing tokens, etc.
-// Service modules often depend upon API modules
-// for making AJAX requests to the server.
+import * as usersAPI from "./users-api";
 
-import * as usersAPI from './users-api';
+const BASE_URL = "/api/users";
 
 export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
-  localStorage.setItem('token', token);
+  localStorage.setItem("token", token);
   return getUser();
 }
 
 export async function login(credentials) {
-  // Delegate the AJAX request to the users-api.js
-  // module.
   const token = await usersAPI.login(credentials);
-  localStorage.setItem('token', token);
+  localStorage.setItem("token", token);
   return getUser();
 }
 
 export function logOut() {
-  localStorage.removeItem('token');
+  localStorage.removeItem("token");
 }
 
 export function getToken() {
-  // getItem will return null if the key does not exists
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (!token) return null;
-  const payload = JSON.parse(atob(token.split('.')[1]));
-  // A JWT's exp is expressed in seconds, not miliseconds
+  const payload = JSON.parse(atob(token.split(".")[1]));
   if (payload.exp * 1000 < Date.now()) {
-    // Token has expired
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     return null;
   }
   return token;
@@ -39,5 +31,28 @@ export function getToken() {
 
 export function getUser() {
   const token = getToken();
-  return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+  return token ? JSON.parse(atob(token.split(".")[1])).user : null;
+}
+
+export function saveLocation(location) {
+  return sendRequest(`${BASE_URL}/save-location`, "POST", { location });
+}
+
+export function deleteLocation(location) {
+  return sendRequest(`${BASE_URL}/delete-location/${location}`, "DELETE");
+}
+
+export function getSavedLocations() {
+  return sendRequest(`${BASE_URL}/saved-locations`);
+}
+
+async function sendRequest(url, method = "GET", payload = null) {
+  const options = { method };
+  if (payload) {
+    options.headers = { "Content-Type": "application/json" };
+    options.body = JSON.stringify(payload);
+  }
+  const res = await fetch(url, options);
+  if (res.ok) return res.json();
+  throw new Error("Bad Request");
 }
