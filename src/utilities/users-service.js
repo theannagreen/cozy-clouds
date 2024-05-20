@@ -38,6 +38,10 @@ export function saveLocation(location) {
   return sendRequest(`${BASE_URL}/save-location`, "POST", { location });
 }
 
+export function deleteLocation(location) {
+  return sendRequest(`${BASE_URL}/delete-location/${location}`, "DELETE");
+}
+
 export function getSavedLocations() {
   return sendRequest(`${BASE_URL}/saved-locations`);
 }
