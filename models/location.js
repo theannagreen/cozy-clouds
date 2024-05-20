@@ -1,7 +1,7 @@
-const mongoose = requre('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const citySchema = new Schema({
+const locationSchema = new Schema({
     name: {type: String, required: true},
     latitude: { type: Number, required: true},
     longitude: { type: Number, required: true},
@@ -9,4 +9,4 @@ const citySchema = new Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('City', citySchema);
+module.exports = mongoose.model('Location', locationSchema);
