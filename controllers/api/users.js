@@ -7,7 +7,13 @@ module.exports = {
   create,
   login,
   getWeather,
+  checkToken
 };
+
+function checkToken(req, res) {
+  console.log('req.user', req.user);
+  res.json(req.exp);
+}
 
 async function create(req, res) {
   try {
@@ -35,6 +41,14 @@ async function login(req, res) {
   }
 }
 
+async function getWeather(req, res) {
+  try {
+    const weatherData = await fetchWeatherData(req.params.location); // Assuming the location is passed as a route parameter
+    res.json(weatherData);
+  } catch (err) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
 /*--- Helper Functions --*/
 
 function createJWT(user) {
