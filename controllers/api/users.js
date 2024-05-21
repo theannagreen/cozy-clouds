@@ -1,12 +1,10 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../../models/user');
-const fetchWeatherData = require('../../models/weather');
 
 module.exports = {
   create,
   login,
-  getWeather,
   checkToken
 };
 
