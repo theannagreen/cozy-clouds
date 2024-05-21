@@ -6,7 +6,6 @@ const fetchWeatherData = require('../../models/weather');
 module.exports = {
   create,
   login,
-  getWeather,
 };
 
 async function create(req, res) {

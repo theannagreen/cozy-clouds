@@ -9,5 +9,9 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 router.post('/', usersCtrl.create);
 // POST /api/users/login
 router.post('/login', usersCtrl.login);
+//ensureloggedin middleware 
+router.get('/profile', ensureLoggedIn, (req, res) => {
+    res.json(req.user);
+})
 
 module.exports = router;
