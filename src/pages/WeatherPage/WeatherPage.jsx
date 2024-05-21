@@ -8,7 +8,7 @@ export default function WeatherPage() {
 
     const fetchWeather = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/weather?city=${city}');
+            const response = await fetch(`http://localhost:3001/api/weather?city=${city}`);
             if (!response.ok) throw new Error('Error fetching data');
             const data = await response.json();
             setWeather(data);
