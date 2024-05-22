@@ -1,24 +1,38 @@
 const axios = require("axios");
 require("dotenv").config();
 
-// retrieve api key from environment variables
 const apiKey = process.env.OPENWEATHER_API_KEY;
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
 const forecastApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
+const geoApiUrl = "http://api.openweathermap.org/geo/1.0/direct";
 
-// fetch weather date from OpenWeatherMap api
+// Fetch weather data from OpenWeatherMap API
 async function fetchWeatherData(location) {
   try {
-    const response = await axios.get(apiUrl, {
+    const geoResponse = await axios.get(geoApiUrl, {
       params: {
         q: location,
+        limit: 1,
+        appid: apiKey,
+      },
+    });
+
+    if (geoResponse.data.length === 0) {
+      throw new Error("Location not found");
+    }
+
+    const { lat, lon } = geoResponse.data[0];
+
+    const weatherResponse = await axios.get(apiUrl, {
+      params: {
+        lat,
+        lon,
         appid: apiKey,
         units: "imperial",
       },
     });
 
-    //extract relevant date from api response
-    const { main, weather, name } = response.data;
+    const { main, weather, name } = weatherResponse.data;
     const temperature = main.temp;
     const description = weather[0].description;
 
@@ -30,15 +44,30 @@ async function fetchWeatherData(location) {
 
 async function fetchWeatherForecast(location) {
   try {
-    const response = await axios.get(forecastApiUrl, {
+    const geoResponse = await axios.get(geoApiUrl, {
       params: {
         q: location,
+        limit: 1,
+        appid: apiKey,
+      },
+    });
+
+    if (geoResponse.data.length === 0) {
+      throw new Error("Location not found");
+    }
+
+    const { lat, lon } = geoResponse.data[0];
+
+    const forecastResponse = await axios.get(forecastApiUrl, {
+      params: {
+        lat,
+        lon,
         appid: apiKey,
         units: "imperial",
       },
     });
 
-    const forecastData = response.data.list;
+    const forecastData = forecastResponse.data.list;
     const dailyForecast = {};
 
     forecastData.forEach((entry) => {
@@ -50,11 +79,11 @@ async function fetchWeatherForecast(location) {
     });
 
     const limitedForecast = Object.keys(dailyForecast)
-    .slice(0,5)
-    .reduce((result, key) => {
-      result[key] = dailyForecast[key];
-      return result;
-    }, {});
+      .slice(0, 5)
+      .reduce((result, key) => {
+        result[key] = dailyForecast[key];
+        return result;
+      }, {});
 
     return limitedForecast;
   } catch (err) {
