@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const User = require('../../models/user');
-const fetchWeatherData = require('../../src/utilities/weather-service');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const User = require("../../models/user");
+const { fetchWeatherData } = require("../../src/utilities/weather-service");
 
 module.exports = {
   create,
@@ -9,7 +9,7 @@ module.exports = {
   getWeather,
   saveLocation,
   deleteLocation,
-  getSavedLocations
+  getSavedLocations,
 };
 
 async function create(req, res) {
@@ -17,12 +17,12 @@ async function create(req, res) {
     // Add the user to the db
     const user = await User.create(req.body);
     const token = createJWT(user);
-    console.log('Generated Token:', token);
-    const weatherData = await fetchWeatherData('New York'); // made NY the default but can be changed 
+    console.log("Generated Token:", token);
+    const weatherData = await fetchWeatherData("New York"); // made NY the default but can be changed
     res.json({ token, weatherData });
   } catch (err) {
-    console.error('Error during user creation:', err)
-    res.status(400).json('Bad Credentials');
+    console.error("Error during user creation:", err);
+    res.status(400).json("Bad Credentials");
   }
 }
 
@@ -33,20 +33,20 @@ async function login(req, res) {
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();
     const token = createJWT(user);
-    console.log('Generated Token:', token);
-    const weatherData = await fetchWeatherData('New York'); // fetching data from default city 
+    console.log("Generated Token:", token);
+    const weatherData = await fetchWeatherData("New York"); // fetching data from default city
     res.json({ token, weatherData });
   } catch (err) {
-    res.status(400).json('Bad Credentials');
+    res.status(400).json("Bad Credentials");
   }
 }
 
 async function getWeather(req, res) {
   try {
-    const weatherData = await fetchWeatherData(req.params.location); 
+    const weatherData = await fetchWeatherData(req.params.location);
     res.json(weatherData);
   } catch (err) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
@@ -57,18 +57,20 @@ async function saveLocation(req, res) {
     await user.save();
     res.json(user.locations);
   } catch (err) {
-    res.status(400).json('Error saving location');
+    res.status(400).json("Error saving location");
   }
 }
 
 async function deleteLocation(req, res) {
   try {
     const user = await User.findById(req.user._id);
-    user.locations = user.locations.filter(loc => loc !== req.params.location);
+    user.locations = user.locations.filter(
+      (loc) => loc !== req.params.location
+    );
     await user.save();
     res.json(user.locations);
   } catch (err) {
-    res.status(400).json('Error deleting location');
+    res.status(400).json("Error deleting location");
   }
 }
 
@@ -77,7 +79,7 @@ async function getSavedLocations(req, res) {
     const user = await User.findById(req.user._id);
     res.json(user.locations);
   } catch (err) {
-    res.status(400).json('Error fetching saved location');
+    res.status(400).json("Error fetching saved location");
   }
 }
 
@@ -88,6 +90,6 @@ function createJWT(user) {
     // data payload
     { user },
     process.env.SECRET,
-    { expiresIn: '24h' }
+    { expiresIn: "24h" }
   );
 }
