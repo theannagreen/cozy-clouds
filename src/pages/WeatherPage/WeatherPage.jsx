@@ -5,6 +5,7 @@ export default function WeatherPage() {
     const [location, setLocation] = useState('');
     const [weather, setWeather] = useState(null);
     const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
 
     const fetchWeather = async () => {
         try {
@@ -13,6 +14,7 @@ export default function WeatherPage() {
             const data = await response.json();
             setWeather(data);
             setError('');
+            setMessage('');
         } catch (err) {
             setError('Error fetching data');
         }
@@ -21,9 +23,11 @@ export default function WeatherPage() {
     const handleSaveLocation = async () => {
         try {
             await saveLocation(location);
-            alert('Location saved');
+            setMessage('Location saved successfully!');
+            setError('');
         } catch (err) {
-            alert('Error saving');
+            setError('Error saving location');
+            setMessage('');
         }
     }
 
@@ -38,6 +42,7 @@ export default function WeatherPage() {
             />
             <button onClick={fetchWeather}>Get Weather</button>
             {error && <p>{error}</p>}
+            {message && <p>{message}</p>}
             {weather && (
                 <div>
                     <h3>Weather in {weather.name}</h3>
