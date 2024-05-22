@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "build")));
 
 app.use(require("./config/checkToken"));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/weather", require("./routes/api/weather"));
