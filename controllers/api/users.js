@@ -6,7 +6,10 @@ const fetchWeatherData = require('../../src/utilities/weather-service');
 module.exports = {
   create,
   login,
-  getWeather
+  getWeather,
+  saveLocation,
+  deleteLocation,
+  getSavedLocations
 };
 
 async function create(req, res) {
@@ -40,12 +43,44 @@ async function login(req, res) {
 
 async function getWeather(req, res) {
   try {
-    const weatherData = await fetchWeatherData(req.params.location); // Assuming the location is passed as a route parameter
+    const weatherData = await fetchWeatherData(req.params.location); 
     res.json(weatherData);
   } catch (err) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+async function saveLocation(req, res) {
+  try {
+    const user = await User.findById(req.user._id);
+    user.locations.push(req.body.location);
+    await user.save();
+    res.json(user.locations);
+  } catch (err) {
+    res.status(400).json('Error saving location');
+  }
+}
+
+async function deleteLocation(req, res) {
+  try {
+    const user = await User.findById(req.user._id);
+    user.locations = user.locations.filter(loc => loc !== req.params.location);
+    await user.save();
+    res.json(user.locations);
+  } catch (err) {
+    res.status(400).json('Error deleting location');
+  }
+}
+
+async function getSavedLocations(req, res) {
+  try {
+    const user = await User.findById(req.user._id);
+    res.json(user.locations);
+  } catch (err) {
+    res.status(400).json('Error fetching saved location');
+  }
+}
+
 /*--- Helper Functions --*/
 
 function createJWT(user) {
