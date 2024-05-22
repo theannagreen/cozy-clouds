@@ -7,7 +7,7 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchCurrentLocationWeather = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api.weather/current');
+                const response = await fetch('http://localhost:3001/api/weather/current');
                 if (!response.ok) throw new Error('Error fetching data');
                 const data = await response.json();
                 setWeather(data);
