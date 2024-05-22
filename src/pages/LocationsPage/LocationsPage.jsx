@@ -12,7 +12,6 @@ export default function LocationsPage() {
                 setLocations(savedLocations);
                 setError('');
             } catch (err) {
-                console.error("Error fetching saved locations", err);
                 setError('Error fetching saved locations');
             }
         };

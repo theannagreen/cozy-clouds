@@ -1,13 +1,24 @@
-const fetchWeatherData = require('../../src/utilities/weather-service');
+const fetchWeatherData = require('../../src/utilities/weather-service').fetchWeatherData;
+const fetchWeatherForecast = require('../../src/utilities/weather-service').fetchWeatherForecast;
 
 module.exports = {
-  getWeather
+  getWeather,
+  get5DayForecast
 };
 
 async function getWeather(req, res) {
   try {
     const weatherData = await fetchWeatherData(req.params.location);
     res.json(weatherData);
+  } catch (err) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function get5DayForecast(req, res) {
+  try {
+    const forecastData = await fetchWeatherForecast(req.params.location);
+    res.json(forecastData);
   } catch (err) {
     res.status(500).json({ error: 'Internal Server Error' });
   }

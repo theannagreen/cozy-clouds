@@ -2,40 +2,40 @@ import { useState, useEffect, useCallback } from "react";
 import { get5DayForecast } from "../../utilities/weather-api";
 
 export default function WeeklyPage() {
-    const [city, setCity] = useState('');
+    const [location, setlocation] = useState('');
     const [forecast, setForecast] = useState(null);
     const [error, setError] = useState('');
 
     const fetchForecast = useCallback(async () => {
         try {
-            const forecastData = await get5DayForecast(city);
+            const forecastData = await get5DayForecast(location);
             setForecast(forecastData);
             setError('');
         } catch (err) {
             setError('Error fetching forecast');
         }
-    }, [city]);
+    }, [location]);
 
     useEffect(() => {
-        if (city) {
+        if (location) {
             fetchForecast();
         }
-    }, [city, fetchForecast]);
+    }, [location, fetchForecast]);
 
     return (
         <div>
             <h2>5-Day Weather Forecast</h2>
             <input 
                 type="text"
-                placeholder="Enter city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                placeholder="Enter location"
+                value={location}
+                onChange={(e) => setlocation(e.target.value)}
             />
             <button onClick={fetchForecast}>Get Forecast</button>
             {error && <p>{error}</p>}
             {forecast && (
                 <div>
-                    <h3>5-Day Weather Forecast for {city}</h3>
+                    <h3>5-Day Weather Forecast for {location}</h3>
                     {forecast.list.map((day, index) => (
                     <div key={index}>
                         <p>{new Date(day.dt * 1000).toLocaleDateString()}</p>
