@@ -29,7 +29,6 @@ export default function LocationsPage() {
             setError('Error deleting location', err);
         }
     };
-    
 
     return (
         <div>
