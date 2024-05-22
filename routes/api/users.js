@@ -12,6 +12,10 @@ router.get("/profile", ensureLoggedIn, (req, res) => {
   res.json(req.user);
 });
 
+router.post('/save-location', ensureLoggedIn, usersCtrl.saveLocation);
+router.delete('/delete-location/:location', ensureLoggedIn, usersCtrl.deleteLocation);
+router.get('/saved-locations', ensureLoggedIn, usersCtrl.getSavedLocations);
+
 // GET /api/users/weather/:location (ensure logged in)
 router.get("/weather/:location", ensureLoggedIn, usersCtrl.getWeather);
 
