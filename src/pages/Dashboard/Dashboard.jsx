@@ -24,10 +24,10 @@ export default function Dashboard() {
         <div>
           <h2>Current Location Weather</h2>
           {error && <p>{error}</p>}
-          {weather && (
+          {weather && weather.main && weather.weather && (
             <div>
               <h3>Weather in {weather.name}</h3>
-              <p>Temperature: {weather.main.temp}°C</p>
+              <p>Temperature: {weather.main.temp}°F</p>
               <p>Condition: {weather.weather[0].description}</p>
             </div>
           )}
