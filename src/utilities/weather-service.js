@@ -38,7 +38,25 @@ async function fetchWeatherForecast(location) {
       },
     });
 
-    return response.data;
+    const forecastData = response.data.list;
+    const dailyForecast = {};
+
+    forecastData.forEach((entry) => {
+      const date = new Date(entry.dt * 1000).toLocaleDateString();
+      if (!dailyForecast[date]) {
+        dailyForecast[date] = [];
+      }
+      dailyForecast[date].push(entry);
+    });
+
+    const limitedForecast = Object.keys(dailyForecast)
+    .slice(0,5)
+    .reduce((result, key) => {
+      result[key] = dailyForecast[key];
+      return result;
+    }, {});
+
+    return limitedForecast;
   } catch (err) {
     throw new Error("Error fetching forecast data");
   }
