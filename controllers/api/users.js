@@ -6,14 +6,8 @@ const fetchWeatherData = require('../../src/utilities/weather-service');
 module.exports = {
   create,
   login,
-  checkToken,
   getWeather
 };
-
-function checkToken(req, res) {
-  console.log('req.user', req.user);
-  res.json(req.exp);
-}
 
 async function create(req, res) {
   try {
