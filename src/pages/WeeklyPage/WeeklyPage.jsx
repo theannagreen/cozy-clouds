@@ -36,14 +36,19 @@ export default function WeeklyPage() {
             {forecast && (
                 <div>
                     <h3>5-Day Weather Forecast for {location}</h3>
-                    {forecast.list.map((day, index) => (
-                    <div key={index}>
-                        <p>{new Date(day.dt * 1000).toLocaleDateString()}</p>
-                        <p>Temperature: {day.main.temp}°F</p>
-                        <p>Condition: {day.weather[0].description}</p>
-                    </div>
-                 ))}
-              </div>
+                    {Object.keys(forecast).map((date, index) => (
+                        <div key={index}>
+                            <h4>{date}</h4>
+                            {forecast[date].map((entry, subIndex) => (
+                                <div key={subIndex}>
+                                    <p>{new Date(entry.dt * 1000).toLocaleTimeString()}</p>
+                                    <p>Temperature: {entry.main.temp}°F</p>
+                                    <p>Condition: {entry.weather[0].description}</p>
+                                </div>
+                             ))}
+                        </div>
+                    ))}
+                </div>
             )}
         </div>
     );
