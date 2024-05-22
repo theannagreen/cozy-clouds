@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getSavedLocations, deleteLocation } from "../../utilities/users-service";
+import sendRequest from "../../utilities/send-request";
 
 export default function LocationsPage() {
     const [locations, setLocations] = useState([]);
+    const [weatherData, setWeatherData] = useState({});
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -10,6 +12,7 @@ export default function LocationsPage() {
             try {
                 const savedLocations = await getSavedLocations();
                 setLocations(savedLocations);
+                fetchWeatherData(savedLocations);
                 setError('');
             } catch (err) {
                 setError('Error fetching saved locations');
@@ -19,13 +22,31 @@ export default function LocationsPage() {
         fetchSavedLocations();
     }, []);
 
+    const fetchWeatherData = async (locations) => {
+        try {
+            const weatherDataResponse = await sendRequest('/api/weather/multiple', 'POST', { locations });
+            const weatherDataMap = {};
+            locations.forEach((location, index) => {
+                weatherDataMap[location] = weatherDataResponse[index];
+            });
+            setWeatherData(weatherDataMap);
+        } catch (err) {
+            setError('Error fetching weather data');
+        }
+    };
+
     const handleDeleteLocation = async (location) => {
         try {
             await deleteLocation(location);
             setLocations(locations.filter(loc => loc !== location));
+            setWeatherData(prev => {
+                const updatedData = { ...prev };
+                delete updatedData[location];
+                return updatedData;
+            });
             setError('');
         } catch (err) {
-            setError('Error deleting location', err);
+            setError('Error deleting location');
         }
     };
 
@@ -36,14 +57,20 @@ export default function LocationsPage() {
             {locations.length === 0 && !error ? (
                 <p>There are no saved locations.</p>
             ) : (
-            <ul>
-                {locations.map((location, index) => (
-                    <li key={index}>
-                        {location}
-                        <button onClick={() => handleDeleteLocation(location)}>Delete</button>
+                <ul>
+                    {locations.map((location, index) => (
+                        <li key={index}>
+                            {location}
+                            {weatherData[location] && (
+                                <div>
+                                    <p>Temperature: {weatherData[location].temperature}°F</p>
+                                    <p>Condition: {weatherData[location].description}</p>
+                                </div>
+                            )}
+                            <button onClick={() => handleDeleteLocation(location)}>Delete</button>
                         </li>
-                ))}
-            </ul>
+                    ))}
+                </ul>
             )}
         </div>
     );
