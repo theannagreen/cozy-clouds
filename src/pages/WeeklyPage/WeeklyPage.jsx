@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { get5DayForecast } from "../../utilities/weather-api";
 
 export default function WeeklyPage() {
     const [location, setlocation] = useState('');
+    const [submittedLocation, setSubmittedLocation] = useState('');
     const [forecast, setForecast] = useState(null);
     const [error, setError] = useState('');
 
@@ -10,17 +11,12 @@ export default function WeeklyPage() {
         try {
             const forecastData = await get5DayForecast(location);
             setForecast(forecastData);
+            setSubmittedLocation(location);
             setError('');
         } catch (err) {
             setError('Error fetching forecast');
         }
     }, [location]);
-
-    useEffect(() => {
-        if (location) {
-            fetchForecast();
-        }
-    }, [location, fetchForecast]);
 
     return (
         <div>
@@ -35,7 +31,7 @@ export default function WeeklyPage() {
             {error && <p>{error}</p>}
             {forecast && (
                 <div>
-                    <h3>5-Day Weather Forecast for {location}</h3>
+                    <h3>5-Day Weather Forecast for {submittedLocation}</h3>
                     {Object.keys(forecast).map((date, index) => (
                         <div key={index}>
                             <h4>{date}</h4>
