@@ -1,4 +1,4 @@
-const fetchWeatherData = require('../../models/weather');
+const fetchWeatherData = require('../../src/utilities/weather-service');
 
 module.exports = {
   getWeather

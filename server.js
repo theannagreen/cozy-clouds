@@ -8,7 +8,6 @@ require('dotenv').config();
 require('./config/database');
 
 const app = express();
-// Use CORS middleware
 app.use(cors());
 
 app.use(logger('dev'));
@@ -26,12 +25,9 @@ app.use(require('./config/checkToken'));
 const port = process.env.PORT || 3001;
 
 
-// Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/weather', require('./routes/api/weather'));
 
-// The following "catch all" route (note the *) is necessary
-// to return the index.html on all non-AJAX/API requests
-app.use('/api/users', require('./routes/api/users'));
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });

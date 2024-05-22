@@ -1,11 +1,13 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../../models/user');
+const fetchWeatherData = require('../../src/utilities/weather-service');
 
 module.exports = {
   create,
   login,
-  checkToken
+  checkToken,
+  getWeather
 };
 
 function checkToken(req, res) {
@@ -21,7 +23,8 @@ async function create(req, res) {
     const weatherData = await fetchWeatherData('New York'); // made NY the default but can be changed 
     res.json({ token, weatherData });
   } catch (err) {
-    res.status(400).json(' Bad Credentials');
+    console.error('Error during user creation:', err)
+    res.status(400).json('Bad Credentials');
   }
 }
 

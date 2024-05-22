@@ -23,7 +23,7 @@ export default function LocationsPage() {
     const handleDeleteLocation = async (location) => {
         try {
             await deleteLocation(location);
-            setLocations(locations.filter(loc => loc !== location)); // Update state after deletion
+            setLocations(locations.filter(loc => loc !== location));
             setError('');
         } catch (err) {
             setError('Error deleting location', err);
