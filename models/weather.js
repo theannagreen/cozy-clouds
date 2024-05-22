@@ -1,29 +1,14 @@
-const axios = require('axios');
-require('dotenv').config();
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const location = require('./location');
 
-// retrieve api key from environment variables 
-const apiKey = process.env.OPENWEATHER_API_KEY;
+const weatherSchema = new Schema({
+    location: { type: Schema.Types.ObjectId, ref: 'Location', required: true },
+    temperature: { type: Number, required: true },
+    description: { type: String, required: true},
+    fetchedAt: { type: Date, default: Date.now, required: true}
+}, {
+    timestamps: true
+});
 
-const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
-
-// fetch weather date from OpenWeatherMap api
-async function fetchWeatherData(location) {
-    try {
-        const response = await axios.get(apiUrl, {
-            params: {
-                q: location,
-                appid: apiKey
-            }
-        });
-
-        //extract relevant date from api response 
-        const { main, weather } = response.data;
-        const temperature = main.temp; 
-        const description = weather[0]. description; 
-
-        return { temperature, description };
-    } catch (error) {
-        throw new Error('Error fetching weather data')
-    }
-}
-module.exports = fetchWeatherData;
+module.exports = mongoose.model('Weather', weatherSchema);

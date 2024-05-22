@@ -15,5 +15,7 @@ router.get('/profile', ensureLoggedIn, (req, res) => {
 
 // GET / ensure login 
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
+// GET /api/users/weather/:location (ensure logged in)
+router.get('/weather/:location', ensureLoggedIn, usersCtrl.getWeather);
 
 module.exports = router;
