@@ -34,7 +34,7 @@ export default function WeeklyPage() {
             <button onClick={fetchForecast}>Get Forecast</button>
             {error && <p>{error}</p>}
             {forecast && (
-                <div>
+                <div className="day-card">
                     <h3>5-Day Weather Forecast for {city}</h3>
                     {forecast.list.map((day, index) => (
                     <div key={index}>
