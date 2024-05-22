@@ -17,11 +17,11 @@ async function fetchWeatherData(location) {
         });
 
         //extract relevant date from api response 
-        const { main, weather } = response.data;
+        const { main, weather, name } = response.data;
         const temperature = main.temp; 
         const description = weather[0]. description; 
 
-        return { temperature, description };
+        return { name, temperature, description };
     } catch (error) {
         throw new Error('Error fetching weather data')
     }
