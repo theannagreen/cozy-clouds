@@ -1,27 +1,25 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../../models/user');
+const fetchWeatherData = require('../../src/utilities/weather-service');
 
 module.exports = {
   create,
   login,
-  checkToken
+  getWeather
 };
-
-function checkToken(req, res) {
-  console.log('req.user', req.user);
-  res.json(req.exp);
-}
 
 async function create(req, res) {
   try {
     // Add the user to the db
     const user = await User.create(req.body);
     const token = createJWT(user);
+    console.log('Generated Token:', token);
     const weatherData = await fetchWeatherData('New York'); // made NY the default but can be changed 
     res.json({ token, weatherData });
   } catch (err) {
-    res.status(400).json(' Bad Credentials');
+    console.error('Error during user creation:', err)
+    res.status(400).json('Bad Credentials');
   }
 }
 
@@ -32,6 +30,7 @@ async function login(req, res) {
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();
     const token = createJWT(user);
+    console.log('Generated Token:', token);
     const weatherData = await fetchWeatherData('New York'); // fetching data from default city 
     res.json({ token, weatherData });
   } catch (err) {

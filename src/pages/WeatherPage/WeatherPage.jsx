@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { saveLocation } from '../../utilities/users-service'
 
 export default function WeatherPage() {
-    const [city, setCity] = useState('');
+    const [location, setLocation] = useState('');
     const [weather, setWeather] = useState(null);
     const [error, setError] = useState('');
 
     const fetchWeather = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/weather?city=${city}');
+            const response = await fetch(`http://localhost:3001/api/weather/${location}`);
             if (!response.ok) throw new Error('Error fetching data');
             const data = await response.json();
             setWeather(data);
@@ -20,7 +20,7 @@ export default function WeatherPage() {
 
     const handleSaveLocation = async () => {
         try {
-            await saveLocation(city);
+            await saveLocation(location);
             alert('Location saved');
         } catch (err) {
             alert('Error saving');
@@ -32,17 +32,17 @@ export default function WeatherPage() {
             <h2>Search Weather by Location</h2>
             <input 
                 type="text"
-                placeholder='Enter city'
-                value={city}
-                onChange={(e) => setCity(e.target.value)} 
+                placeholder='Enter location'
+                value={location}
+                onChange={(e) => setLocation(e.target.value)} 
             />
             <button onClick={fetchWeather}>Get Weather</button>
             {error && <p>{error}</p>}
             {weather && (
                 <div>
                     <h3>Weather in {weather.name}</h3>
-                    <p>Temperature: {weather.main.temp}°F</p>
-                    <p>Condition: {weather.weather[0].description}</p>
+                    <p>Temperature: {weather.temperature}°F</p>
+                    <p>Condition: {weather.description}</p>
                     <button onClick={handleSaveLocation}>Save Location</button>
                 </div>
             )}

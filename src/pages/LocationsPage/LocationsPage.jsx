@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { getSavedLocations, deleteLocation } from "../../utilities/users-service";
-import { set } from "mongoose";
 
 export default function LocationsPage() {
     const [locations, setLocations] = useState([]);
@@ -24,7 +23,7 @@ export default function LocationsPage() {
     const handleDeleteLocation = async (location) => {
         try {
             await deleteLocation(location);
-            setLocations(locations.filter(loc => loc !== location)); // Update state after deletion
+            setLocations(locations.filter(loc => loc !== location));
             setError('');
         } catch (err) {
             setError('Error deleting location', err);
@@ -36,7 +35,7 @@ export default function LocationsPage() {
         <div>
             <h2>Saved Locations</h2>
             {error && <p>{error}</p>}
-            {locations.length === 0 ? (
+            {locations.length === 0 && !error ? (
                 <p>There are no saved locations.</p>
             ) : (
             <ul>
