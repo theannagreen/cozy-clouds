@@ -9,7 +9,8 @@ export default function WeatherPage() {
 
     const fetchWeather = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/weather/location/${location}`);
+            const apiUrl = process.env.REACT_API_URL;
+            const response = await fetch(`${apiUrl}/api/weather/location/${location}`);
             if (!response.ok) throw new Error('Error fetching data');
             const data = await response.json();
             setWeather(data);
