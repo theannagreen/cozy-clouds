@@ -93,12 +93,60 @@ p.error-message {
   margin-top: 1vmin;
 }
 
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .card {
   margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #ffffff; /* White background */
+  padding: 20px;
+  border-radius: 15px; 
+  background-color: var(--baby-blue); 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 200px;
+  width: 250px;
   text-align: center;
+  color: black; 
 }
+
+.card h4, .card p {
+  margin: 10px 0; 
+}
+
+nav {
+  background-color: #add8e6;
+  padding: 1vmin;
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5vmin;
+  position: fixed;
+  top: 0;        
+  width: 100%;    
+  z-index: 100%;  
+}
+
+
+nav a {
+  color: #ffffff;
+  font-size: 2vmin;
+  text-decoration: none;
+  padding: 0.5vmin 1vmin;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+  border-radius: 0.5vmin;
+}
+
+nav a:hover {
+  background-color: #ffffff;
+  color: #add8e6;
+}
+
+nav span {
+  color: #ffffff;
+  font-size: 2vmin;
+}
+
