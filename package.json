@@ -9,23 +9,23 @@
         "axios": "^1.7.1",
         "bcrypt": "^5.1.0",
         "cors": "^2.8.5",
-        "dotenv": "^16.0.3",
+        "dotenv": "^16.4.5",
         "express": "^4.18.2",
         "jsonwebtoken": "^8.5.1",
+        "mongodb": "^6.6.2",
         "mongoose": "^6.7.2",
         "morgan": "^1.10.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.4.3",
-        "react-scripts": "^4.0.3",
+        "react-scripts": "^5.0.1",
         "serve-favicon": "^2.5.0"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "heroku-postbuild": "npm run build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "start": "node_modules/react-scripts/bin/react-scripts.js start",
+        "build": "node_modules/react-scripts/bin/react-scripts.js build",
+        "test": "node_modules/react-scripts/bin/react-scripts.js test",
+        "eject": "node_modules/react-scripts/bin/react-scripts.js eject"
     },
     "eslintConfig": {
         "extends": [

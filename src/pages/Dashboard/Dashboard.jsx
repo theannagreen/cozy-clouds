@@ -41,7 +41,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div>
+    <div className="weather">
       <h2>Current Location Weather</h2>
       {loading && <p>Searching for your location...</p>}
       {error && <p>{error}</p>}

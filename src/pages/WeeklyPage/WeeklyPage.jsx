@@ -6,7 +6,6 @@ export default function WeeklyPage() {
     const [submittedLocation, setSubmittedLocation] = useState('');
     const [forecast, setForecast] = useState(null);
     const [error, setError] = useState('');
-
     const fetchForecast = useCallback(async () => {
         try {
             const forecastData = await get5DayForecast(location);
@@ -17,11 +16,10 @@ export default function WeeklyPage() {
             setError('Error fetching forecast');
         }
     }, [location]);
-
     return (
         <div>
             <h2>5-Day Weather Forecast</h2>
-            <input 
+            <input
                 type="text"
                 placeholder="Enter location"
                 value={location}
@@ -30,10 +28,10 @@ export default function WeeklyPage() {
             <button onClick={fetchForecast}>Get Forecast</button>
             {error && <p>{error}</p>}
             {forecast && (
-                <div>
+                <div className="card-container">
                     <h3>5-Day Weather Forecast for {submittedLocation}</h3>
                     {Object.keys(forecast).map((date, index) => (
-                        <div key={index}>
+                        <div className="card" key={index}>
                             <h4>{date}</h4>
                             {forecast[date].map((entry, subIndex) => (
                                 <div key={subIndex}>
