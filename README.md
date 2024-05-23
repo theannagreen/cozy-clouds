@@ -12,8 +12,8 @@ Cozy Clouds is a full-stack web weather app that allows users to view current we
 - **Current Location Weather**: Users can allow the app to use their current location to display weather conditions.
 - **Search Locations**: Users can search for weather conditions in various locations.
 - **5-Day Forecast**: View a 5-day weather forecast for selected locations.
-- **Saved Locations**: Users can save their favorite locations and view the weather conditions for these saved locations.
-- **Manage Locations**: Users can save new locations and delete existing ones to their locations list.
+- **Saved Locations**: Users can save their favorite locations, view the weather conditions for these saved locations, and delete them when they are no longer needed.
+
 
 ## Screenshots
 **<p align=center>Coming Soon</p>**
