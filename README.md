@@ -1,12 +1,22 @@
-# Cozy Clouds
+# <p align="center">COZY CLOUDS</p>
 
-Cozy Clouds is a full-stack web app that allows users to view current weather conditions and forecasts for their saved locations. The app is built using the MERN stack (MongoDB, Express, React, Node.js) and integrates with an API to fetch real-time weather data.
+#### <p align=center>This project was co-created by a dedicated team of developers:</p>
+#### <p align=center>[Danielle Rojas](https://www.linkedin.com/in/daniellerojas1/), [Theanna Green](https://www.linkedin.com/in/theanna-green/), and [Zaria Hallager](https://www.linkedin.com/in/zariahallager/)</p>
 
-## Future Features
+### <p align="center">[CLICK TO VIEW APP](https://cozy-clouds-app-3a452a07a7d6.herokuapp.com)</p>
 
-- **User Authentication**
-- **Location Management**
-- **Weather Data**
+
+Cozy Clouds is a full-stack web weather app that allows users to view current weather conditions and forecasts for their saved locations. The app is built using the MERN stack (MongoDB, Express, React, Node.js) and integrates with an API to fetch real-time weather data.
+
+## Features
+- **Current Location Weather**: Users can allow the app to use their current location to display weather conditions.
+- **Search Locations**: Users can search for weather conditions in various locations.
+- **5-Day Forecast**: View a 5-day weather forecast for selected locations.
+- **Saved Locations**: Users can save their favorite locations, view the weather conditions for these saved locations, and delete them when they are no longer needed.
+
+
+## Screenshots
+**<p align=center>Coming Soon</p>**
 
 ## Technologies Used
 
@@ -24,3 +34,27 @@ Cozy Clouds is a full-stack web app that allows users to view current weather co
 ![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)
 ![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
 ![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)
+
+## Getting Started
+<details open>
+    <summary>How to Use Weather App</summary>
+    <ol>
+        <li>Click the link to the deployed Heroku site.</li>
+        <li>You will be prompted to allow the site to access your location - please accept if you would like to view your current location's weather.</li>
+        <li>Enjoy the rest of the app!</li>
+    </ol>
+</details>
+<details open>
+    <summary> Project Planning Link</summary>
+    Link to full project planning on <a href="https://trello.com/invite/b/6kFA05h5/ATTIfed358706314e9e5714943aa82b2528721C8DD7B/project-4-capstone-team-project">Trello</a>.
+</details>
+<details>
+    <summary>Deployment Link</summary>
+    <a href="https://cozy-clouds-app-3a452a07a7d6.herokuapp.com">Cozy Clouds - Heroku</a>
+</details>
+
+## Next Steps
+### Future Improvements & Features
+- [ ] Profile customization
+- [ ] Adding air quality index: displaying the air quality and related health advice 
+- [ ] Personalized Notifications: enable push notifications for weather updates and alerts for saved locations
