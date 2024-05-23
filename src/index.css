@@ -292,8 +292,6 @@ body {
     }
 }
 
-/* ANIMATIONS */
-
 .x1 {
 	-webkit-animation: animateCloud 35s linear infinite;
 	-moz-animation: animateCloud 35s linear infinite;
