@@ -14,7 +14,8 @@ export default function Dashboard() {
             const { latitude, longitude } = position.coords;
             try {
               // Fetch weather data using the coordinates
-              const response = await fetch(`http://localhost:3001/api/weather/current?lat=${latitude}&lon=${longitude}`);
+              const apiUrl = process.env.REACT_APP_API_URL;
+              const response = await fetch(`${apiUrl}/api/weather/current?lat=${latitude}&lon=${longitude}`);
               if (!response.ok) throw new Error('Error fetching data');
               const data = await response.json();
               setWeather(data);
