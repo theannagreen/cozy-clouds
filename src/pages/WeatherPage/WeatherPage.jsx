@@ -9,7 +9,8 @@ export default function WeatherPage() {
 
     const fetchWeather = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/weather/${location}`);
+            const apiUrl = process.env.REACT_APP_API_URL;
+            const response = await fetch(`${apiUrl}/api/weather/location/${location}`);
             if (!response.ok) throw new Error('Error fetching data');
             const data = await response.json();
             setWeather(data);
@@ -36,7 +37,7 @@ export default function WeatherPage() {
             <h2>Search Weather by Location</h2>
             <input 
                 type="text"
-                placeholder='Enter location'
+                placeholder='Enter location (City) or (City, State/Country)'
                 value={location}
                 onChange={(e) => setLocation(e.target.value)} 
             />

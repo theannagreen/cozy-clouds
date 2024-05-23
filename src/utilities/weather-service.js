@@ -42,6 +42,27 @@ async function fetchWeatherData(location) {
   }
 }
 
+async function fetchWeatherDataByCoords(lat, lon) {
+  try {
+    const weatherResponse = await axios.get(apiUrl, {
+      params: {
+        lat,
+        lon,
+        appid: apiKey,
+        units: "imperial",
+      },
+    });
+
+    const { main, weather, name } = weatherResponse.data;
+    const temperature = main.temp;
+    const description = weather[0].description;
+
+    return { name, temperature, description };
+  } catch (err) {
+    throw new Error("Error fetching weather data");
+  }
+}
+
 async function fetchWeatherForecast(location) {
   try {
     const geoResponse = await axios.get(geoApiUrl, {
@@ -91,4 +112,4 @@ async function fetchWeatherForecast(location) {
   }
 }
 
-module.exports = { fetchWeatherData, fetchWeatherForecast };
+module.exports = { fetchWeatherData, fetchWeatherForecast, fetchWeatherDataByCoords };
