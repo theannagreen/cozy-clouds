@@ -51,7 +51,7 @@ export default function LocationsPage() {
     };
 
     return (
-        <div>
+        <div className="cloud-div">
             <h2>Saved Locations</h2>
             {error && <p>{error}</p>}
             {locations.length === 0 && !error ? (
@@ -59,7 +59,7 @@ export default function LocationsPage() {
             ) : (
                 <ul>
                     {locations.map((location, index) => (
-                        <li key={index}>
+                        <li className="cloud" key={index}>
                             {location}
                             {weatherData[location] && (
                                 <div>
@@ -67,7 +67,7 @@ export default function LocationsPage() {
                                     <p>Condition: {weatherData[location].description}</p>
                                 </div>
                             )}
-                            <button onClick={() => handleDeleteLocation(location)}>Delete</button>
+                            <button className="cloud-btn" onClick={() => handleDeleteLocation(location)}>Delete</button>
                         </li>
                     ))}
                 </ul>
