@@ -88,56 +88,120 @@ button.btn-sm {
   padding: .6vmin .8vmin;
 }
 
-button.btn-xs {
-  font-size: 1vmin;
-  padding: .4vmin .5vmin;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-button:disabled, form:invalid button[type="submit"] {
-  cursor: not-allowed;
-  background-color: var(--tan-4);
+.card {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 15px; 
+  background-color: var(--baby-blue); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  color: black; 
 }
 
-.x5 {
-	-webkit-animation: animateCloud 25s linear infinite;
-	-moz-animation: animateCloud 25s linear infinite;
-	animation: animateCloud 25s linear infinite;
-	
-	-webkit-transform: scale(0.55);
-	-moz-transform: scale(0.55);
-	transform: scale(0.55);
+.card h4, .card p {
+  margin: 10px 0; 
+}
+
+nav {
+  background-color: #add8e6;
+  padding: 1vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5vmin;
+  position: fixed;
+  top: 0;
+  left: 0; 
+  right: 0; 
+  width: 100%;
+  z-index: 100;
+}
+
+nav a {
+  color: #ffffff;
+  font-size: 2vmin;
+  text-decoration: none;
+  padding: 0.5vmin 1vmin;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+  border-radius: 0.5vmin;
+}
+
+nav a:hover {
+  background-color: #ffffff;
+  color: #add8e6;
 }
 
 /* OBJECTS */
 
 .cloud {
-	background: #fff;
-	background: -moz-linear-gradient(top,  #fff 5%, #f1f1f1 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#fff), color-stop(100%,#f1f1f1));
-	background: -webkit-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: -o-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: -ms-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#f1f1f1',GradientType=0 );
-	
-	-webkit-border-radius: 100px;
-	-moz-border-radius: 100px;
-	border-radius: 100px;
-	
-	-webkit-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
-	box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
-
-	height: 120px;
-	position: relative;
-	width: 350px;
+  position: relative;
+  display: inline-block;
+  background: #ffffff;
+  color: #1e3a8a; 
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  text-align: center;
+  font-size: 1rem;
 }
 
-.cloud:after, .cloud:before {
-    background: #fff;
-	content: '';
-	position: absolute;
-	z-indeX: -1;
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cloud::before {
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: 10px;
+}
+
+.cloud::after {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  right: 10px;
+}
+
+.cloud-btn {
+  position: relative;
+  display: inline-block;
+  background: #ffffff;
+  color: #1e3a8a;
+  padding: 5px 15px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.8rem;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  outline: none;
+}
+
+.cloud-btn::before,
+.cloud-btn::after {
+  content: '';
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cloud:after {
