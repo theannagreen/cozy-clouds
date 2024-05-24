@@ -146,9 +146,9 @@ nav a:hover {
 .cloud {
   position: relative;
   display: inline-block;
-  background: #ffffff;
-  color: #1e3a8a; 
-  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #1e3a8a;
+  padding: 40px 50px;
   border-radius: 50px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 10px;
