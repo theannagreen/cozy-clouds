@@ -8,17 +8,19 @@ export default function NavBar({ user, setUser }) {
   }
 
   return (
-    <nav>
-      <Link to="/dashboard">Dashboard</Link>
-      &nbsp; | &nbsp;
-      <Link to="/weather">Weather</Link>
-      &nbsp; | &nbsp;
-      <Link to="/weekly">Weekly</Link>
-      &nbsp; | &nbsp;
-      <Link to="/locations">Locations</Link>
-      &nbsp; | &nbsp;
-      <span>Welcome, {user.name}</span>
-      &nbsp; | &nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
+    <nav className='navbar'>
+      <div className='navbar-left'>
+        <span>Welcome, {user.name}</span>
+      </div>
+      <div className="navbar-center">
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/weather">Weather</Link>
+        <Link to="/weekly">Weekly</Link>
+        <Link to="/locations">Locations</Link>
+      </div>
+      <div className="navbar-right">
+        <Link to="" onClick={handleLogOut}>Log Out</Link>
+      </div>
     </nav>
   );
 }
