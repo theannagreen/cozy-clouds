@@ -55,7 +55,7 @@ Cozy Clouds is a full-stack web weather app that allows users to view current we
 
 ## Next Steps
 ### Future Improvements & Features
-- [ ] Profile customization
-- [ ] Adding air quality index: displaying the air quality and related health advice 
+- [ ] Profile Customization
+- [ ] Adding Air Quality Index: displaying the air quality and related health advice 
 - [ ] Personalized Notifications: enable push notifications for weather updates and alerts for saved locations
 - [ ] Weather Widgets: Implement customizable weather widgets that users can embed on their desktop or mobile devices to view weather information at a glance
