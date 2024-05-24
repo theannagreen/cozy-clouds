@@ -92,14 +92,9 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: blue;
-}
-
-p.error-message {
-  color: red;
-  text-align: center;
-  margin-top: 1vmin;
+button.btn-sm {
+  font-size: 1.5vmin;
+  padding: .6vmin .8vmin;
 }
 
 .card-container {
@@ -180,9 +175,9 @@ nav a:hover {
 .cloud {
   position: relative;
   display: inline-block;
-  background: #ffffff;
-  color: #1e3a8a; 
-  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #1e3a8a;
+  padding: 40px 50px;
   border-radius: 50px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 10px;
@@ -197,6 +192,20 @@ nav a:hover {
   background: #ffffff;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cloud::before {
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: 10px;
+}
+
+.cloud::after {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  right: 10px;
 }
 
 .cloud-btn {
@@ -224,183 +233,7 @@ nav a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-.cloud-btn:hover {
-  background: #e0f7fa;
-}
-
-.cloud-div h2 {
-  text-align: center;
-  text-decoration: wavy;
-  color: #1e3a8a;
-  font-size: 2rem;
-  margin: 20px 0; 
-  border: none;
-}
-
-.weather {
-  position: relative;
-  background-color: #ffffff; 
-  border-radius: 20px;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden; 
-}
-
-.weather::before,
-.weather::after {
-  content: '';
-  position: absolute;
-  background-color: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.weather h2 {
-  text-align: center;
-  color: #1e3a8a;
-  font-size: 2rem;
-  margin: 0;
-}
-
-.weather p {
-  text-align: center;
-}
-
-body {
-	background: linear-gradient(to top, var(--sky-blue), var(--cloud-white));
-	color: #333;
-	font: 100% Arial, Sans Serif;
-	height: 100vh;
-	margin: 0;
-	padding: 0;
-	overflow-x: hidden;
-}
-
-#background-wrap {
-    bottom: 0;
-	left: 0;
-	padding-top: 50px;
-	position: fixed;
-	right: 0;
-	top: 0;
-	z-index: -1;
-}
-
-/* KEYFRAMES */
-
-@-webkit-keyframes animateCloud {
-    0% {
-        margin-left: -1000px;
-    }
-    100% {
-        margin-left: 100%;
-    }
-}
-
-@-moz-keyframes animateCloud {
-    0% {
-        margin-left: -1000px;
-    }
-    100% {
-        margin-left: 100%;
-    }
-}
-
-@keyframes animateCloud {
-    0% {
-        margin-left: -1000px;
-    }
-    100% {
-        margin-left: 100%;
-    }
-}
-
-.x1 {
-	-webkit-animation: animateCloud 35s linear infinite;
-	-moz-animation: animateCloud 35s linear infinite;
-	animation: animateCloud 35s linear infinite;
-	
-	-webkit-transform: scale(0.65);
-	-moz-transform: scale(0.65);
-	transform: scale(0.65);
-}
-
-.x2 {
-	-webkit-animation: animateCloud 20s linear infinite;
-	-moz-animation: animateCloud 20s linear infinite;
-	animation: animateCloud 20s linear infinite;
-	
-	-webkit-transform: scale(0.3);
-	-moz-transform: scale(0.3);
-	transform: scale(0.3);
-}
-
-.x3 {
-	-webkit-animation: animateCloud 30s linear infinite;
-	-moz-animation: animateCloud 30s linear infinite;
-	animation: animateCloud 30s linear infinite;
-	
-	-webkit-transform: scale(0.5);
-	-moz-transform: scale(0.5);
-	transform: scale(0.5);
-}
-
-.x4 {
-	-webkit-animation: animateCloud 18s linear infinite;
-	-moz-animation: animateCloud 18s linear infinite;
-	animation: animateCloud 18s linear infinite;
-	
-	-webkit-transform: scale(0.4);
-	-moz-transform: scale(0.4);
-	transform: scale(0.4);
-}
-
-.x5 {
-	-webkit-animation: animateCloud 25s linear infinite;
-	-moz-animation: animateCloud 25s linear infinite;
-	animation: animateCloud 25s linear infinite;
-	
-	-webkit-transform: scale(0.55);
-	-moz-transform: scale(0.55);
-	transform: scale(0.55);
-}
-
-/* OBJECTS */
-
-.cloud-d {
-	background: #fff;
-	background: -moz-linear-gradient(top,  #fff 5%, #f1f1f1 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#fff), color-stop(100%,#f1f1f1));
-	background: -webkit-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: -o-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: -ms-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#f1f1f1',GradientType=0 );
-	
-	-webkit-border-radius: 100px;
-	-moz-border-radius: 100px;
-	border-radius: 100px;
-	
-	-webkit-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
-	box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
-
-	height: 120px;
-	position: relative;
-	width: 350px;
-}
-
-.cloud-d:after, .cloud-d:before {
-    background: #fff;
-	content: '';
-	position: absolute;
-	z-indeX: -1;
-}
-
-.cloud-d:after {
+.cloud:after {
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	border-radius: 100px;
@@ -411,7 +244,7 @@ body {
 	width: 100px;
 }
 
-.cloud-d:before {
+.cloud:before {
 	-webkit-border-radius: 200px;
 	-moz-border-radius: 200px;
 	border-radius: 200px;
